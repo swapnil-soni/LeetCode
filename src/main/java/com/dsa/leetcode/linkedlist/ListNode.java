@@ -1,4 +1,4 @@
-package linkedlist;
+package com.dsa.leetcode.linkedlist;
 
 class ListNode {
     int val;

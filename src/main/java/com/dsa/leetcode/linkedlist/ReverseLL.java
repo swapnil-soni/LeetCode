@@ -1,6 +1,6 @@
-package linkedlist;
+package com.dsa.leetcode.linkedlist;
 
-public class deleteNFromLast {
+public class ReverseLL {
     public static void main(String[] args) {
         ListNode head = new ListNode(1);
         head.next = new ListNode(2);
@@ -16,9 +16,7 @@ public class deleteNFromLast {
             start = start.next;
         }
 
-        removeNthFromEnd(head, 2);
-
-        start = head;
+        start = reverseList(head);
         System.out.println("\nAfter: ");
         while(start != null){
             System.out.print(start.val + " ");
@@ -26,21 +24,14 @@ public class deleteNFromLast {
         }
     }
 
-    public static ListNode removeNthFromEnd(ListNode head, int n) {
-        ListNode fast = head, slow = head;
-        int cnt = 0;
-
-        for(int i=1; i<=n; ++i){
-            fast = fast.next;
+    public static ListNode reverseList(ListNode head){
+        ListNode next = null, newHead = null;
+        while(head != null){
+            next = head.next;
+            head.next = newHead;
+            newHead = head;
+            head = next;
         }
-
-        while(fast.next != null){
-            fast = fast.next;
-            slow = slow.next;
-        }
-
-        slow.next = slow.next.next;
-        return head;
+        return newHead;
     }
 }
-

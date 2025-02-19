@@ -1,8 +1,6 @@
-package linkedlist;
+package com.dsa.leetcode.linkedlist;
 
-import java.util.List;
-
-public class MiddleOfLL {
+public class DeleteNode {
     public static void main(String[] args) {
         ListNode head = new ListNode(1);
         head.next = new ListNode(2);
@@ -19,19 +17,16 @@ public class MiddleOfLL {
             start = start.next;
         }
 
-        start = middleNode(head);
+        deleteNode(head.next.next);
         System.out.println("\nAfter: ");
+        start = head;
         while(start != null){
             System.out.print(start.val + " ");
             start = start.next;
         }
     }
-    public static ListNode middleNode(ListNode head) {
-        ListNode fast = head, slow = head;
-        while(fast != null && fast.next != null){
-            fast = fast.next.next;
-            slow = slow.next;
-        }
-        return slow;
+    public static void deleteNode(ListNode node) {
+        node.val = node.next.val;
+        node.next = node.next.next;
     }
 }

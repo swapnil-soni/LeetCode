@@ -1,13 +1,12 @@
-package linkedlist;
+package com.dsa.leetcode.linkedlist;
 
-public class DeleteNode {
+public class deleteNFromLast {
     public static void main(String[] args) {
         ListNode head = new ListNode(1);
         head.next = new ListNode(2);
         head.next.next = new ListNode(3);
         head.next.next.next = new ListNode(4);
         head.next.next.next.next = new ListNode(5);
-        head.next.next.next.next.next = new ListNode(6);
 
         ListNode start= head;
 
@@ -17,16 +16,31 @@ public class DeleteNode {
             start = start.next;
         }
 
-        deleteNode(head.next.next);
-        System.out.println("\nAfter: ");
+        removeNthFromEnd(head, 2);
+
         start = head;
+        System.out.println("\nAfter: ");
         while(start != null){
             System.out.print(start.val + " ");
             start = start.next;
         }
     }
-    public static void deleteNode(ListNode node) {
-        node.val = node.next.val;
-        node.next = node.next.next;
+
+    public static ListNode removeNthFromEnd(ListNode head, int n) {
+        ListNode fast = head, slow = head;
+        int cnt = 0;
+
+        for(int i=1; i<=n; ++i){
+            fast = fast.next;
+        }
+
+        while(fast.next != null){
+            fast = fast.next;
+            slow = slow.next;
+        }
+
+        slow.next = slow.next.next;
+        return head;
     }
 }
+
